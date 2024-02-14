@@ -26,6 +26,7 @@ require (
 )
 
 require (
+	github.com/go-chi/chi v1.5.5
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/leodido/go-urn v1.1.0 // indirect
 	github.com/vmihailenco/msgpack/v4 v4.3.13
