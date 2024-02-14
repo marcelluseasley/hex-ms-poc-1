@@ -2,15 +2,15 @@ package shortener
 
 import (
 	"errors"
-	"time"
 	errs "github.com/pkg/errors"
 	"github.com/teris-io/shortid"
 	"gopkg.in/dealancer/validate.v2"
+	"time"
 )
 
 var (
 	ErrRedirectNotFound = errors.New("Redirect Not Found")
-	ErrRedirectInvalid = errors.New("Redirect Invalid")
+	ErrRedirectInvalid  = errors.New("Redirect Invalid")
 )
 
 type redirectService struct {

@@ -1,9 +1,9 @@
-package json 
+package json
 
 import (
 	"encoding/json"
-	"github.com/pkg/errors"
 	"github.com/marcelluseasley/hex-ms-poc-1/shortener"
+	"github.com/pkg/errors"
 )
 
 type Redirect struct{}

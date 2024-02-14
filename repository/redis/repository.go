@@ -64,9 +64,9 @@ func (r *redisRepository) Find(code string) (*shortener.Redirect, error) {
 func (r *redisRepository) Store(redirect *shortener.Redirect) error {
 	key := r.generateKey(redirect.Code)
 	data := map[string]interface{}{
-		"code":        redirect.Code,
-		"url":         redirect.URL,
-		"created_at":  redirect.CreatedAt,
+		"code":       redirect.Code,
+		"url":        redirect.URL,
+		"created_at": redirect.CreatedAt,
 	}
 	_, err := r.client.HMSet(key, data).Result()
 	if err != nil {

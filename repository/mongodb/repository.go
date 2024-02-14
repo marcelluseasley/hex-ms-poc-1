@@ -1,20 +1,20 @@
-package mongodb 
+package mongodb
 
 import (
 	"context"
 	"time"
 
-	"github.com/pkg/errors"
 	"github.com/marcelluseasley/hex-ms-poc-1/shortener"
+	"github.com/pkg/errors"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
 type mongoRepository struct {
-	client *mongo.Client
-	db     string
+	client  *mongo.Client
+	db      string
 	timeout time.Duration
 }
 
@@ -35,7 +35,7 @@ func newMongoClient(mongoURL string, mongoTimeout int) (*mongo.Client, error) {
 func NewMongoRepository(mongoURL, mongoDB string, mongoTimeout int) (shortener.RedirectRepository, error) {
 	repo := &mongoRepository{
 		timeout: time.Duration(mongoTimeout) * time.Second,
-		db:     mongoDB,
+		db:      mongoDB,
 	}
 	client, err := newMongoClient(mongoURL, mongoTimeout)
 	if err != nil {
@@ -71,6 +71,3 @@ func (r *mongoRepository) Store(redirect *shortener.Redirect) error {
 	}
 	return nil
 }
-
-
-
