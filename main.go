@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"os/signal"
 	"strconv"
+	"syscall"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
@@ -33,6 +35,14 @@ func main() {
 		fmt.Println("Listening on port: ", httpPort())
 		errs <- http.ListenAndServe(httpPort(), r)
 	}()
+
+	go func() {
+		c := make(chan os.Signal, 1)
+		signal.Notify(c, syscall.SIGINT)
+		errs <- fmt.Errorf("%s", <-c)
+	}()
+
+	fmt.Println("terminated", <-errs)
 
 }
 
